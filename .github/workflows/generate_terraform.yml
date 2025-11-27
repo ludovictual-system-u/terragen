@@ -1,0 +1,32 @@
+name: Générer du code Terraform
+
+on:
+  repository_dispatch:
+    types: [generate_terraform]
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer les données
+        run: |
+          echo "Provider: ${{ github.event.client_payload.provider }}"
+          echo "Resource: ${{ github.event.client_payload.resource }}"
+          echo "Name: ${{ github.event.client_payload.name }}"
+
+      - name: Générer le code Terraform
+        run: |
+          # Exemple de génération de code Terraform
+          cat > main.tf <<EOL
+          provider "${{ github.event.client_payload.provider }}" {}
+
+          resource "${{ github.event.client_payload.provider }}_${{ github.event.client_payload.resource }}" "${{ github.event.client_payload.name }}" {
+            # Configuration de base
+          }
+          EOL
+
+      - name: Sauvegarder le code
+        uses: actions/upload-artifact@v3
+        with:
+          name: terraform-code
+          path: main.tf

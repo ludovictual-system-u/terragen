@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>TerraGen</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Générateur de code Terraform</h1>
+  <form id="terraformForm">
+    <label for="provider">Fournisseur Cloud :</label>
+    <select id="provider" required>
+      <option value="aws">AWS</option>
+      <option value="azure">Azure</option>
+      <option value="gcp">Google Cloud</option>
+    </select>
+
+    <label for="resource">Type de ressource :</label>
+    <select id="resource" required>
+      <option value="vm">Machine Virtuelle</option>
+      <option value="storage">Stockage</option>
+      <option value="network">Réseau</option>
+    </select>
+
+    <label for="name">Nom de la ressource :</label>
+    <input type="text" id="name" required>
+
+    <button type="submit">Générer le code Terraform</button>
+  </form>
+
+  <div id="result"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
